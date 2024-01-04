@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="sideBar">
+      <form action="" id="shapeForm">
+        <fieldset id="shapeRadio">
+          <legend>Shapes</legend>
+          <div class="shapeContainer">
+            <div class="logoContainer">
+              <input type="radio" id="rect" class="shapeRadio" name="shape" value="rect" checked />
+              <label class="shapeLabel" for="rect"><img class="shapeLogo" src="./Media/Icons/rect.svg" alt="Rectangle"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="circle" class="shapeRadio radio" name="shape" value="circle" />
+              <label class="shapeLabel" for="circle"><img class="shapeLogo" src="./Media/Icons/circle.svg" alt="Circle"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="line" class="shapeRadio radio" name="shape" value="line" />
+              <label class="shapeLabel" for="line"><img class="shapeLogo" src="./Media/Icons/line.svg" alt="Line"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="arrow" class="shapeRadio radio" name="shape" value="arrow" />
+              <label class="shapeLabel" for="arrow"><img class="shapeLogo" src="./Media/Icons/arrow.svg" alt="Arrow"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="doubleArrow" class="shapeRadio radio" name="shape" value="doubleArrow" />
+              <label class="shapeLabel" for="doubleArrow"><img class="shapeLogo" src="./Media/Icons/doubleArrow.svg" alt="Double sided arrow"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="freehand" class="shapeRadio radio" name="shape" value="freehand" />
+              <label class="shapeLabel" for="freehand"><img class="shapeLogo" src="./Media/Icons/freehand.svg" alt="Freehand drawing"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="text" class="shapeRadio radio" name="shape" value="text" />
+              <label class="shapeLabel" for="text"><img class="shapeLogo" src="./Media/Icons/text.svg" alt="Text"></label>
+            </div>
+            <div class="logoContainer">
+              <input type="radio" id="dimension" class="shapeRadio radio" name="shape" value="dimension" />
+              <label class="shapeLabel" for="dimension"><img class="shapeLogo" src="./Media/Icons/dimension.svg" alt="Dimension"></label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset id="colorFieldset">
+          <legend>Colors</legend>
+          <div class='colorContainer'>
+            <input type="radio" id="black" class="colorRadio radio" name="color" value="black" checked/>
+            <label class="colorLabel" id="blackLabel" for="black"></label>
+
+            <input type="radio" id="DarkGray" class="colorRadio radio" name="color" value="DarkGray" />
+            <label class="colorLabel" id="darkGrayLabel" for="DarkGray"></label>
+
+            <input type="radio" id="white" class="colorRadio radio" name="color" value="white" />
+            <label class="colorLabel" id="whiteLabel" for="white"></label>
+
+            <input type="radio" id="Crimson" class="colorRadio radio" name="color" value="Crimson" />
+            <label class="colorLabel" id="crimsonLabel" for="Crimson"></label>
+
+            <input type="radio" id="red" class="colorRadio radio" name="color" value="red" />
+            <label class="colorLabel" id="redLabel" for="red"></label>
+
+            <input type="radio" id="DarkOrange" class="colorRadio radio" name="color" value="DarkOrange" />
+            <label class="colorLabel" id="darkOrangeLabel" for="DarkOrange"></label>
+
+            <input type="radio" id="DarkViolet" class="colorRadio radio" name="color" value="DarkViolet" />
+            <label class="colorLabel" id="darkVioletLabel" for="DarkViolet"></label>
+
+            <input type="radio" id="DeepPink" class="colorRadio radio" name="color" value="DeepPink" />
+            <label class="colorLabel" id="deepPinkLabel" for="DeepPink"></label>
+
+            <input type="radio" id="Coral" class="colorRadio radio" name="color" value="Coral" />
+            <label class="colorLabel" id="coralLabel" for="Coral"></label>
+
+            <input type="radio" id="blue" class="colorRadio radio" name="color" value="blue" />
+            <label class="colorLabel" id="blueLabel" for="blue"></label>
+
+            <input type="radio" id="DodgerBlue" class="colorRadio radio" name="color" value="DodgerBlue" />
+            <label class="colorLabel" id="dodgerBlueLabel" for="DodgerBlue"></label>
+
+            <input type="radio" id="aquamarine" class="colorRadio radio" name="color" value="aquamarine" />
+            <label class="colorLabel" id="aquamarineLabel" for="aquamarine"></label>
+
+            <input type="radio" id="green" class="colorRadio radio" name="color" value="green" />
+            <label class="colorLabel" id="greenLabel" for="green"></label>
+
+            <input type="radio" id="lime" class="colorRadio radio" name="color" value="lime" />
+            <label class="colorLabel" id="limeLabel" for="lime"></label>
+  
+            <input type="radio" id="yellow" class="colorRadio radio" name="color" value="yellow" />
+            <label class="colorLabel" id="yellowLabel" for="yellow"></label>
+          </div>
+        </fieldset>
+        <fieldset id="strokeWidthFieldset">
+          <legend>Line thickness</legend>
+          <div class="thicknessContainer">
+            <div class="slidecontainer">
+              <input type="range" min="2" max="8" value="2" class="slider" id="strokeWidth">
+            </div>
+          </div>
+          <datalist id="thicknessValues">
+              <option value="2" label="2"></option>
+              <option value="3" label="3"></option>
+              <option value="4" label="4"></option>
+              <option value="5" label="5"></option>
+              <option value="6" label="6"></option>
+              <option value="7" label="7"></option>
+              <option value="8" label="8"></option>
+            </datalist>
+        </fieldset>
+      </form>
+    </div>
+    <div id="app">
+      <div id='image-container'>
+        <canvas id='canvas'></canvas>
+        <img src="" alt="" id="image">
+        <div id="konva"></div>
+      </div>
+      <div id='label-container'></div>
+      <button id="nextBtn">Open image</button>
+      <button id="detectBtn" disabled>Detect rivets</button>
+      <input
+        type="file"
+        id="fileElem"
+        multiple
+        accept="image/*"
+      style="display:none" />
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
