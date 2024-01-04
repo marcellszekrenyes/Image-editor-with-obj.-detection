@@ -1,13 +1,13 @@
 import './style.css'
-import * as tf from '@tensorflow/tfjs';
-import { renderBoxes } from "./utils/renderBox";
-import { non_max_suppression } from "./utils/nonMaxSuppression";
+// import * as tf from '@tensorflow/tfjs';
+// import { renderBoxes } from "./utils/renderBox";
+// import { non_max_suppression } from "./utils/nonMaxSuppression";
 import Konva from 'konva';
 import { draw, undo, redo, clearKonva} from './drawer';
-const URL = './TFModel/v8/';
+// const URL = './TFModel/v8/';
 
 async function init() {
-  const modelURL = URL + 'model_yolov7.json';
+  // const modelURL = URL + 'model_yolov7.json';
   const nextButton = document.getElementById('nextBtn');
   const detectButton = document.getElementById('detectBtn');
   const canvas = document.getElementById('canvas');
@@ -16,8 +16,8 @@ async function init() {
   const threshold = 0.1;
   let i = 0;
 
-  let model = await tf.loadGraphModel(modelURL);
-  console.log('model is loaded');
+  // let model = await tf.loadGraphModel(modelURL);
+  // console.log('model is loaded');
 
   let image = document.getElementById('image');
   let newImage = document.createElement('img');
@@ -57,129 +57,129 @@ async function init() {
     canvas.getContext('2d').clearRect(0, 0, 640, 640); // clean canvas
   })
   
-  detectButton.addEventListener('click', () => {
-    console.log('Start:')
-    console.log(new Date());
-    canvas.getContext('2d').clearRect(0, 0, 640, 640); // clean canvas
-    detect(newImage);
-  })
+  // detectButton.addEventListener('click', () => {
+  //   console.log('Start:')
+  //   console.log(new Date());
+  //   canvas.getContext('2d').clearRect(0, 0, 640, 640); // clean canvas
+  //   detect(newImage);
+  // })
 
 
-  async function detect(photo) {
-    const model_dim = [640, 640];
-    let allDetections = [];
+  // async function detect(photo) {
+  //   const model_dim = [640, 640];
+  //   let allDetections = [];
 
-    //test cropping
-    let imageTensor = tf.browser.fromPixels(photo);
-    console.log(imageTensor.shape);
+  //   //test cropping
+  //   let imageTensor = tf.browser.fromPixels(photo);
+  //   console.log(imageTensor.shape);
   
-    for(let i = 0; i <= 3; i++){
-      let cropStartPoint = [0, 0, 0];
-      let cropSize = [640, 640, 3];
+  //   for(let i = 0; i <= 3; i++){
+  //     let cropStartPoint = [0, 0, 0];
+  //     let cropSize = [640, 640, 3];
 
-      if (i == 1){
-        cropStartPoint = [0, 116, 0];
-      }else if (i == 2){
-        cropStartPoint = [368, 0, 0];
-      }else if (i == 3){
-        cropStartPoint = [368, 116, 0];
-      }
+  //     if (i == 1){
+  //       cropStartPoint = [0, 116, 0];
+  //     }else if (i == 2){
+  //       cropStartPoint = [368, 0, 0];
+  //     }else if (i == 3){
+  //       cropStartPoint = [368, 116, 0];
+  //     }
 
-      let croppedTensor = tf.slice(imageTensor, cropStartPoint, cropSize);
+  //     let croppedTensor = tf.slice(imageTensor, cropStartPoint, cropSize);
 
-      const input = tf.tidy(() => {
-        const img = tf.image
-                    .resizeBilinear(croppedTensor, model_dim, true)
-                    .div(255.0)
-                    .transpose([2, 0, 1])
-                    .expandDims(0);
-        return img;
-      });
+  //     const input = tf.tidy(() => {
+  //       const img = tf.image
+  //                   .resizeBilinear(croppedTensor, model_dim, true)
+  //                   .div(255.0)
+  //                   .transpose([2, 0, 1])
+  //                   .expandDims(0);
+  //       return img;
+  //     });
 
-      //constants to compensate for displayed and calculated image resolution difference
-      const stretchX = 1/(756/640);
-      const stretchY = 1/(1008/640);
-      const transferX = cropStartPoint[1];
-      const transferY = cropStartPoint[0];
-      //ctx.strokeRect((transferX + x1) * stretchX,(transferY + y1) * stretchY, width * stretchX, height * stretchY);
+  //     //constants to compensate for displayed and calculated image resolution difference
+  //     const stretchX = 1/(756/640);
+  //     const stretchY = 1/(1008/640);
+  //     const transferX = cropStartPoint[1];
+  //     const transferY = cropStartPoint[0];
+  //     //ctx.strokeRect((transferX + x1) * stretchX,(transferY + y1) * stretchY, width * stretchX, height * stretchY);
 
-      //prediction with initial filtering + transformation
-      const result = await model.executeAsync(input).then((res) => {
-        res = res.arraySync()[0];
-        console.log('res:')
-        console.log(res);
+  //     //prediction with initial filtering + transformation
+  //     const result = await model.executeAsync(input).then((res) => {
+  //       res = res.arraySync()[0];
+  //       console.log('res:')
+  //       console.log(res);
 
-        //remove items with confidence under the specified treshold vaule
-        let detections = [];
-        for(let i = 0; i <= res.length - 1; i++) {
-          if(res[i][4] >= threshold){
-            detections.push(res[i]);
-          }
-        }
+  //       //remove items with confidence under the specified treshold vaule
+  //       let detections = [];
+  //       for(let i = 0; i <= res.length - 1; i++) {
+  //         if(res[i][4] >= threshold){
+  //           detections.push(res[i]);
+  //         }
+  //       }
 
-        for(let i = 0; i <= detections.length - 1; i++){
-          detections[i][0] = (transferX + detections[i][0]) * stretchX;
-          detections[i][1] = (transferY + detections[i][1]) * stretchY;
-          detections[i][2] = detections[i][2] * stretchX;
-          detections[i][3] = detections[i][3] * stretchY;
-        }
+  //       for(let i = 0; i <= detections.length - 1; i++){
+  //         detections[i][0] = (transferX + detections[i][0]) * stretchX;
+  //         detections[i][1] = (transferY + detections[i][1]) * stretchY;
+  //         detections[i][2] = detections[i][2] * stretchX;
+  //         detections[i][3] = detections[i][3] * stretchY;
+  //       }
 
-        // const boxes = shortenedCol(detections, [0,1,2,3]);
-        // const scores = shortenedCol(detections, [4]);
-        // const class_detect = shortenedCol(detections, [5]);
-        console.log(`detections ${i}.`);
-        console.log(detections);
+  //       // const boxes = shortenedCol(detections, [0,1,2,3]);
+  //       // const scores = shortenedCol(detections, [4]);
+  //       // const class_detect = shortenedCol(detections, [5]);
+  //       console.log(`detections ${i}.`);
+  //       console.log(detections);
 
-        return detections;
-      });
+  //       return detections;
+  //     });
 
-      allDetections = [...allDetections, ...result];
+  //     allDetections = [...allDetections, ...result];
 
-    }
+  //   }
 
-    //sort the detections before filtering, to make sure the best results get selected during overlap check
-    bubbleSort(allDetections);
-    console.log('allDetections after sorting:');
-    console.log(allDetections);
-    //remove overlapping items from the array
-    let filteredDetections = non_max_suppression(allDetections);
-    console.log('filteredDetections:');
-    console.log(filteredDetections);
+  //   //sort the detections before filtering, to make sure the best results get selected during overlap check
+  //   bubbleSort(allDetections);
+  //   console.log('allDetections after sorting:');
+  //   console.log(allDetections);
+  //   //remove overlapping items from the array
+  //   let filteredDetections = non_max_suppression(allDetections);
+  //   console.log('filteredDetections:');
+  //   console.log(filteredDetections);
 
-    renderBoxes(canvas, threshold, filteredDetections);
+  //   renderBoxes(canvas, threshold, filteredDetections);
 
-    console.log('End:')
-    console.log(new Date());
-  }
+  //   console.log('End:')
+  //   console.log(new Date());
+  // }
 
-  function shortenedCol(arrayofarray, indexlist) {
-    return arrayofarray.map(function (array) {
-        return indexlist.map(function (idx) {
-            return array[idx];
-        });
-    });
-  }
+  // function shortenedCol(arrayofarray, indexlist) {
+  //   return arrayofarray.map(function (array) {
+  //       return indexlist.map(function (idx) {
+  //           return array[idx];
+  //       });
+  //   });
+  // }
 
   function counter() {
     i++;
   }
 
-  function bubbleSort(array) {
-    for (var i = 0; i < array.length; i++) {
-      // Last i elements are already in place
-      for (var j = 0; j < (array.length - i - 1); j++) {
-          // Checking if the item at present iteration 
-          // is greater than the next iteration
-          if (array[j][4] > array[j + 1][4]) {
-              // If the condition is true
-              // then swap them
-              var temp = array[j];
-              array[j] = array[j + 1];
-              array[j + 1] = temp;
-          }
-      }
-    }
-  }
+  // function bubbleSort(array) {
+  //   for (var i = 0; i < array.length; i++) {
+  //     // Last i elements are already in place
+  //     for (var j = 0; j < (array.length - i - 1); j++) {
+  //         // Checking if the item at present iteration 
+  //         // is greater than the next iteration
+  //         if (array[j][4] > array[j + 1][4]) {
+  //             // If the condition is true
+  //             // then swap them
+  //             var temp = array[j];
+  //             array[j] = array[j + 1];
+  //             array[j + 1] = temp;
+  //         }
+  //     }
+  //   }
+  // }
 }
 
 const pickerOpts = {
