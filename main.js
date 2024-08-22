@@ -3,7 +3,7 @@
 // import { renderBoxes } from "./utils/renderBox";
 // import { non_max_suppression } from "./utils/nonMaxSuppression";
 import Konva from './konva';
-import { draw, undo, redo, clearKonva} from './drawer';
+import { draw, undo, redo, clearKonva} from '/Image-editor-with-obj.-detection/drawer';
 // const URL = './TFModel/v8/';
 
 async function init() {
