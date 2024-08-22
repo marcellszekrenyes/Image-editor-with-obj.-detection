@@ -2,8 +2,8 @@
 // import * as tf from '@tensorflow/tfjs';
 // import { renderBoxes } from "./utils/renderBox";
 // import { non_max_suppression } from "./utils/nonMaxSuppression";
-import Konva from 'konva';
-import { draw, undo, redo, clearKonva} from '/Image-editor-with-obj.-detection/drawer.js';
+// import Konva from 'konva';
+import {draw, undo, redo, clearKonva} from '/Image-editor-with-obj.-detection/drawer.js';
 // const URL = './TFModel/v8/';
 
 async function init() {
