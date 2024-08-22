@@ -1,4 +1,4 @@
-import '/Image-editor-with-obj.-detection/style.css'
+// import '/Image-editor-with-obj.-detection/style.css'
 // import * as tf from '@tensorflow/tfjs';
 // import { renderBoxes } from "./utils/renderBox";
 // import { non_max_suppression } from "./utils/nonMaxSuppression";
